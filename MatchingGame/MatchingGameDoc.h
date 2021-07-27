@@ -4,21 +4,30 @@
 
 
 #pragma once
-
-
-class CMatchingGameDoc : public CDocument
-{
+// include to header for file access
+#include "MatchingGameBoard.h" 
+class CMatchingGameDoc : public CDocument {
 protected: // create from serialization only
 	CMatchingGameDoc() noexcept;
 	DECLARE_DYNCREATE(CMatchingGameDoc)
 
-// Attributes
+	// Attributes
 public:
 
-// Operations
+	// Operations
 public:
+	//-------- GAME BOARD INFO
+	COLORREF GetBoardSpace(int row, int col) { return _gameBoard.GetBoardSpace(row, col); }
+	void SetUpBoard() { _gameBoard.SetUpBoard(); }
+	int GetWidth() { _gameBoard.GetWidth(); }
+	int GetHeight() { _gameBoard.GetHeight(); }
+	int GetRows() { _gameBoard.GetRows(); }
+	int GetColumns() { _gameBoard.GetColumns(); }
+	int DeleteBoard() { _gameBoard.DeleteBoard(); }
 
-// Overrides
+
+
+	// Overrides
 public:
 	virtual BOOL OnNewDocument();
 	virtual void Serialize(CArchive& ar);
@@ -27,7 +36,7 @@ public:
 	virtual void OnDrawThumbnail(CDC& dc, LPRECT lprcBounds);
 #endif // SHARED_HANDLERS
 
-// Implementation
+	// Implementation
 public:
 	virtual ~CMatchingGameDoc();
 #ifdef _DEBUG
@@ -36,8 +45,10 @@ public:
 #endif
 
 protected:
+	//----------- Game Board Instance
+	MatchingGameBoard _gameBoard;
 
-// Generated message map functions
+	// Generated message map functions
 protected:
 	DECLARE_MESSAGE_MAP()
 
