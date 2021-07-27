@@ -46,6 +46,8 @@ BOOL CMatchingGameDoc::OnNewDocument()
 	// TODO: add reinitialization code here
 	// (SDI documents will reuse this document)
 
+	_gameBoard.SetUpBoard();
+
 	return TRUE;
 }
 
